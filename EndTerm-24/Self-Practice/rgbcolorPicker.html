@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 200px;
+            width: 200px;
+            background-color: black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <input type="range" min="0" max="255" id="red">
+    <input type="range" min="0" max="255" id="green">
+    <input type="range" min="0" max="255" id="blue">
+
+    <div class="container">
+
+    </div>
+
+    <script>
+        let red = document.getElementById("red")
+        let green = document.getElementById("green")
+        let blue = document.getElementById("blue")
+        let container = document.querySelector(".container")
+
+        function colorPicker() {
+            container.style.backgroundColor = `rgb(${red.value},${green.value},${blue.value})`;
+        }
+        red.addEventListener("input", colorPicker)
+        green.addEventListener("input", colorPicker)
+        blue.addEventListener("input", colorPicker);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="container" onmouseenter="console.log('MOuse ke upar point kiya')" onclick="console.log('mouse pe click huya')"></button>
+
+   
+      <button onclick="alert('Hello '); let a=7;console.log(a);" >Click Me</button>
+
+      <button id="btn">Click Me</button>
+
+    <script>
+      /*  let a=document.getElementsByClassName("container")[0]
+        a.onclick =()=>{
+            let b=document.getElementsByClassName("container")[0]
+            b.innerHTML="HELLO WORLD";
+        }*/
+  let x=function(e){
+    alert('Hello World');
+  }
+  let b=function(e){
+    alert('Hello World 2');
+
+  }
+ btn.addEventListener('click',x);
+ btn.addEventListener('click',b);
+
+ let a = prompt("What is ypur favouriite number?");
+ if(a=="2"){
+    btn.removeEventListener('click',x);
+ }
+ 
+    </script>
+</body>
+</html>

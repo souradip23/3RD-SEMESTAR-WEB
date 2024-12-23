@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        th,
+        td {
+            border: 1px solid red;
+            height: 30px;
+            width: 100px;
+        }
+
+        #result {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <p>Name:-</p>
+        <br />
+        <input type="text" id="name" />
+        <br />
+        <p>Id:-</p>
+        <br />
+        <input type="number" id="roll" />
+        <br />
+        <button type="button" id="btn">Add data</button> <!-- Changed to type="button" -->
+    </form>
+
+    <div id="result">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll</th>
+                </tr>
+            </thead>
+
+            <tbody id="studata"></tbody>
+    </div>
+
+    <script>
+        const stud_name = document.getElementById("name");
+        const stud_roll = document.getElementById("roll");
+        const tbody = document.getElementById("studata");
+        const btn = document.getElementById("btn");
+        let studData = [];
+
+        const setItem = (studData) => {
+            localStorage.setItem("Data", JSON.stringify(studData));
+        }
+
+        const getItem = () => {
+            return JSON.parse(localStorage.getItem("Data")) || [];
+        }
+
+        const printTable = (studData) => {
+            tbody.innerHTML = "";
+            studData.forEach(item => {
+                const row = document.createElement("tr");
+                const data1 = document.createElement("td");
+                const data2 = document.createElement("td");
+                data1.innerHTML = item.studName;
+                data2.innerHTML = item.stduRoll;
+                row.appendChild(data1);
+                row.appendChild(data2);
+                tbody.appendChild(row);
+            });
+        }
+
+        const addData = (e) => {
+            e.preventDefault();
+            let stud_name_value = stud_name.value.trim();
+            let stud_roll_value = stud_roll.value.trim();
+            studData = getItem();
+            if (stud_name_value.length > 0 && stud_roll_value.length > 0) {
+                let studentDetails = {};
+                studentDetails["studName"] = stud_name_value;
+                studentDetails["stduRoll"] = stud_roll_value;
+                studData.push(studentDetails);
+                setItem(studData);
+                printTable(studData);
+                stud_name.value = "";
+                stud_roll.value = "";
+            }
+
+        };
+
+        studentData = getItem();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            printTable(studentData);
+        });
+
+        btn.addEventListener('click', addData);
+    </script>
+</body>
+
+</html>

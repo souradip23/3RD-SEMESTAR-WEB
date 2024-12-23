@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="txtName">
+    <button>Store</button>
+    <label for="" id="lblName"></label>
+    <script>
+        /* const students = {
+            name: "abc",
+            age: 27,
+            grades: [24, 36, 57, 67],
+            address:
+            {
+                city: "xyz",
+                state: "123"
+            }
+
+        } 
+*/
+        //    document.querySelector('lblName').innerText = sessionStorage.getItem("batched");
+        /*
+        document.querySelector('#lblName').innerText = sessionStorage["batched"];
+
+        document.querySelector('button').addEventListener('click', function () {
+            const value = document.querySelector('#txtName').value;
+            //sessionStorage.setItem("batched", value);
+            sessionStorage["batched"] = value;
+        })
+
+*/
+
+
+        /*
+                document.querySelector('#lblName').innerText = localStorage["batched"];
+        
+                document.querySelector('button').addEventListener('click', function () {
+                    const value = document.querySelector('#txtName').value;
+                    //sessionStorage.setItem("batched", value);
+                    localStorage["batched"] = value;
+                })
+        
+        
+        */
+        const names = [];
+        document.querySelector('button').addEventListener('click', function () {
+            names.push(document.querySelector('#txtName'))
+        })
+
+    </script>
+</body>
+
+</html>

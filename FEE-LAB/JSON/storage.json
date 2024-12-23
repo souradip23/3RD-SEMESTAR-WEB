@@ -1,0 +1,11 @@
+{
+    "name": "abc",
+    "age": 27,
+    "grades": [24, 36, 57, 67],
+    "address":
+    {
+        "city": "xyz",
+        "state": "123"
+    }
+
+}

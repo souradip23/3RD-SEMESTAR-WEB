@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DynamicTable</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #first_input {
+            margin-right: 10px;
+        }
+
+        #input_div {
+            margin-bottom: 20px;
+        }
+
+        #table_id {
+            height: auto;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main_container">
+        <div id="input_div">
+            <form>
+                <input type="text" placeholder="Enter Your First Name " id="first_input">
+                <input type="text" placeholder="Enter Your Second Name" id="second_input">
+                <button id="add_btn">ADD</button>
+            </form>
+
+        </div>
+        <div id="display_div">
+            <table border="1" id="table_id">
+                <thead>
+                    <tr>
+                        <th>First_Name</th>
+                        <th>Second_Name</th>
+                        <th>Full_Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        const data = JSON.parse(localStorage.getItem('dat')) || [];
+
+        const first_input = document.getElementById('first_input');
+        const second_input = document.getElementById('second_input');
+        const add_btn = document.getElementById('add_btn');
+        const tbody = document.querySelector('tbody');
+
+        window.onload = function () {
+            data.forEach((obj) => {
+                const tr = document.createElement('tr');
+                const td1 = document.createElement('td');
+                const td2 = document.createElement('td');
+                const td3 = document.createElement('td');
+                td1.innerHTML = obj.first_name;
+                td2.innerHTML = obj.second_name;
+                td3.innerHTML = obj.full_name;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tbody.appendChild(tr);
+            })
+        }
+        add_btn.addEventListener('click', addRow);
+
+        function addRow(event) {
+            event.preventDefault();
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            const td3 = document.createElement('td');
+            td1.innerHTML = first_input.value;
+            td2.innerHTML = second_input.value;
+            td3.innerHTML = `${first_input.value} ${second_input.value}`;
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tbody.appendChild(tr);
+
+            const person = {
+                first_name: first_input.value,
+                second_name: second_input.value,
+                full_name: `${first_input.value} ${second_input.value}`,
+            };
+
+            data.push(person);
+            localStorage.setItem('dat', JSON.stringify(data));
+            first_input.value = '';
+            second_input.value = '';
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

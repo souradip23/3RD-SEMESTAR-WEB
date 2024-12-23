@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            padding: 3px;
+        }
+
+        body {
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Simple Calculator</h1>
+    <div>
+        <label for="">Number 1: </label>
+        <input type="number" id="num1">
+    </div>
+    <div>
+        <label for="">Number 2: </label>
+        <input type="number" id="num2">
+
+    </div>
+    <div>
+        <label for="">Result: </label>
+        <input type="text" id="result">
+
+    </div>
+
+
+    <div>
+        <button onclick="calculate('add')">+</button>
+        <button onclick="calculate('sub')">-</button>
+        <button onclick="calculate('mul')">*</button>
+        <button onclick="calculate('div')">/</button>
+
+    </div>
+
+
+    <script>
+
+        function calculate(operation) {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value)
+            // let result = (document.getElementById("result").value)
+            let r;
+
+            switch (operation) {
+                case 'add':
+                    r = num1 + num2;
+                    break;
+                case 'sub':
+                    r = num1 - num2;
+                    break;
+                case 'mul':
+                    r = num1 * num2;
+                    break;
+                case 'div':
+                    r = (num2 !== 0) ? num1 / num2 : "Can't divide by zero";
+                    break;
+
+                default:
+                    // result.textContent = "Please Choose a Operation!"
+                    r = "Invalid Input!"
+
+
+
+            }
+            document.getElementById("result").value = r;
+        }
+    </script>
+</body>
+
+</html>

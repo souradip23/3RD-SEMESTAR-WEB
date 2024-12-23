@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       html,body{
+        height: 100%;
+        width: 100%;
+       } 
+       .bulb{
+        background: yellow;
+       }
+       .conatiner-bulb{
+        height: 341px;
+        width: 341px;
+               }
+    </style>
+</head>
+<body>
+    
+    <div id="bulb" class=" conatiner-bulb bulb">Hey how are you </div>
+
+    <script>
+        setInterval(async function()  {
+            document.querySelector("#bulb").classList.toggle("bulb")
+        }, 300);
+    </script>
+</body>
+</html>

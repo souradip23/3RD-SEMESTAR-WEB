@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        const movies = [
+        { title: "Inception", genre: "Sci-Fi", rating: 9.0 },
+        { title: "Titanic", genre: "Romance", rating: 7.8 },
+        { title: "The Dark Knight", genre: "Action", rating: 8.5 },
+        { title: "Interstellar", genre: "Sci-Fi", rating: 8.6 },
+        { title: "The Room", genre: "Drama", rating: 3.7 }
+    ];
+    let body=document.querySelector("body");
+    function movie(movies){
+       movies.forEach(obj=>{
+        if(obj.rating>=8){
+            let div=document.createElement("div")
+            div.textContent=obj.title;
+            body.appendChild(div);
+            
+        }
+       })
+    }
+    console.log(movie(movies))
+
+
+    </script>
+</body>
+
+</html>

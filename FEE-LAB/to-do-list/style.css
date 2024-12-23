@@ -1,0 +1,28 @@
+.done{
+    text-decoration: line-through;
+    background-color: grey !important;
+    color: black;
+}
+.todobox li i{
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    background-color: green;
+    color: black;
+    cursor: pointer;
+
+
+}
+.todobox li{
+
+    position: relative;
+    margin: 10px;
+    padding: 10px;
+
+
+}

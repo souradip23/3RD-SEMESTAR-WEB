@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {
+        display: inline;
+    }
+</style>
+
+<body>
+    <button id="pos">+</button>
+    <h1 id="add">0</h1>
+    <button id="neg">-</button>
+
+    <script>
+        let pos = document.getElementById("pos")
+        let add = document.getElementById("add")
+        let neg = document.getElementById("neg")
+        let count = 0;
+        pos.addEventListener("click", function () {
+            count++;
+            add.textContent = count
+
+        })
+        neg.addEventListener("click", function () {
+            if (count > 0) {
+                count--;
+                add.textContent = count;
+            }
+        })
+    </script>
+</body>
+
+</html>

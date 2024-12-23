@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Image Dynamically</title>
+</head>
+
+<body>
+    <div id="image-container">
+        <h2>Image Gallery</h2>
+    </div>
+    <button id="add-image-btn">Add Image</button>
+
+    <script>
+        // Function to add an image dynamically
+        function addImage() {
+            // Create an <img> element
+            const img = document.createElement('img');
+
+            // Set attributes for the image
+            img.src = 'https://via.placeholder.com/150'; // URL of the image
+            img.alt = 'Placeholder Image';
+            img.width = 150;
+            img.height = 150;
+
+            // Get the container where the image will be added
+            const container = document.getElementById('image-container');
+
+            // Append the image to the container
+            container.appendChild(img);
+        }
+
+        // Attach an event listener to the button
+        document.getElementById('add-image-btn').addEventListener('click', addImage);
+    </script>
+</body>
+
+</html>

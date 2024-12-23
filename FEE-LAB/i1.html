@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">FirstName</label>
+    <input type="text" id="fname">
+    <label for="">LastName</label>
+    <input type="text" id="lname">
+    <button id="btn">ADD DATA</button>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>Last Name</th>
+                <th>Full Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+
+    </table>
+
+    <script>
+
+        const data = JSON.parse(localStorage.getItem("key")) || [];
+        const fname = document.getElementById("fname")
+        const lname = document.getElementById("lname")
+        const btn = document.getElementById("btn")
+        const tbody = document.getElementById("tbody")
+
+        window.onload = function () {
+            data.forEach(obj => {
+                let tr = document.createElement("tr");
+                let tfname = document.createElement("td")
+                let tlname = document.createElement("td");
+                tfullname = document.createElement("td");
+                tfname.textContent = obj.first_name;
+                tlname.textContent = obj.last_name;
+                tfullname.textContent = obj.full_name;
+                tr.appendChild(tfname)
+                tr.appendChild(tlname)
+                tr.appendChild(tfullname)
+                tbody.appendChild(tr);
+            })
+        }
+
+
+
+        btn.addEventListener("click", addRow);
+        function addRow(event) {
+            event.preventDefault();
+            let tr = document.createElement("tr");
+            let tfname = document.createElement("td")
+            let tlname = document.createElement("td");
+            tfullname = document.createElement("td");
+            tfname.textContent = fname.value;
+            tlname.textContent = lname.value;
+            tfullname.textContent = `${fname.value} ${lname.value}`;
+            tr.appendChild(tfname)
+            tr.appendChild(tlname)
+            tr.appendChild(tfullname)
+            tbody.appendChild(tr);
+            const person = {
+                first_name: fname.value,
+                last_name: lname.value,
+                full_name: `${fname.value} ${lname.value}`
+            }
+            data.push(person);
+            localStorage.setItem("key", JSON.stringify(data));
+            fname.value = ""
+            lname.value = ""
+
+
+        }
+
+    </script>
+</body>
+
+</html>

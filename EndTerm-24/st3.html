@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" name="" id="inp">
+    <button id="btn">check</button>
+    <h3 id="tent"></h3>
+    <script>
+        let input1 = document.getElementById("inp");
+        let tent = document.getElementById("tent")
+        let btn = document.getElementById("btn")
+
+        btn.addEventListener("click", function () {
+            if (input1.value) {
+                if (input1.value > 18 && input1.value < 60) {
+                    tent.style.color = "green"
+                    tent.textContent = "You are valid "
+
+
+                } else {
+                    tent.textContent = "You are not valid"
+                    tent.style.color = "red";
+                }
+            } 45
+        })
+    </script>
+</body>
+
+</html>
