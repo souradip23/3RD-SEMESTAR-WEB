@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+    <style>
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.light-mode {
+            background-color: #fff;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Theme Selector</h1>
+    <button id="darkModeBtn">Enable Dark Mode</button>
+    <button id="lightModeBtn">Enable Light Mode</button>
+
+    <script>
+        // Function to set the theme
+        function setTheme(theme) {
+            // Apply the theme class to the body
+            document.body.className = theme;
+            // Save the theme in local storage
+            localStorage.setItem('theme', theme);
+        }
+
+        // Event listeners for the buttons
+        document.getElementById('darkModeBtn').addEventListener('click', function () {
+            setTheme('dark-mode');
+        });
+
+
+        document.getElementById('lightModeBtn').addEventListener('click', function () {
+            setTheme('light-mode');
+        });
+
+        // On page load, check if there's a theme stored in local storage
+        window.onload = function () {
+            const savedTheme = localStorage.getItem('theme');
+            // If a theme is saved, apply it
+            if (savedTheme) {
+                setTheme(savedTheme);
+            }
+        };
+    </script>
+</body>
+
+</html>

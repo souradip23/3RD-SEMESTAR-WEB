@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+
+</head>
+
+<body>
+    <h1>Welcome to home page</h1>
+    <h2>We are learning ajax</h2>
+    <p>please give me some glass of water</p>
+    <h1><a href="about.html">About page</a></h1>
+
+    <button type="" onclick="loadAboutInformation()">Load About</button>
+
+
+    <div id="container"></div>
+
+    <button id="jbtn">JQuery Load</button>
+
+
+    <!-- using jquery -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        function loadAboutInformation() {
+            //call to ajax:
+            //about.html
+            var request = new XMLHttpRequest();
+            request.open("GET", "soua.json", true);
+
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //   console.log(this.responseText);
+                    let obj = JSON.parse(this.responseText)
+                    console.log(obj);
+                    // document.getElementById("container").innerText = JSON.stringify(obj, null, 2);
+                    document.getElementById("container").innerHTML = `<h2>${obj.name}</h2><p>${obj.question}</p>`;
+
+
+                }
+            }
+
+            request.send();
+
+        }
+    </script>
+
+    <!-- for jquery script -->
+    <script>
+        $(document).ready(function () {
+            //document is ready
+            $("#jbtn").click(function () {
+                //btn click
+                $.get("soua.json", function (data) {
+                    console.log("jquery: ")
+                    console.log(data);
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

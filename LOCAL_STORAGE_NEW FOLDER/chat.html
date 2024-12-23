@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Multiple Names Example</title>
+</head>
+
+<body>
+    <!-- <h1>LocalStorage with Multiple Names</h1> -->
+
+    <label for="name">Enter a name:</label>
+    <input type="text" id="name" placeholder="Add a name">
+    <button onclick="addName()">Add Name</button>
+    <button onclick="showNames()">Show All Names</button>
+    <button onclick="clearNames()">Clear All Names</button>
+
+    <ul id="nameList"></ul>
+
+    <script>
+        // Function to add a new name to localStorage
+        function addName() {
+            const nameInput = document.getElementById('name').value;
+            if (nameInput) {
+                // Get existing names from localStorage or initialize an empty array
+                const names = JSON.parse(localStorage.getItem('names')) || [];
+                names.push(nameInput);  // Add the new name to the array
+                localStorage.setItem('names', JSON.stringify(names));  // Save updated array to localStorage
+                document.getElementById('name').value = '';  // Clear input field
+                showNames();  // Update displayed names
+            } else {
+                alert("Please enter a name.");
+            }
+        }
+
+        // Function to display all names from localStorage
+        function showNames() {
+            const names = JSON.parse(localStorage.getItem('names')) || [];
+            const nameList = document.getElementById('nameList');
+            nameList.innerHTML = '';  // Clear the list
+
+            // Display each name as a list item
+            names.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                nameList.appendChild(li);
+            });
+
+            if (names.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = 'No names in storage.';
+                nameList.appendChild(li);
+            }
+        }
+
+        // Function to clear all names from localStorage
+        function clearNames() {
+            localStorage.removeItem('names');
+            showNames();  // Update displayed names
+        }
+
+        // Display names on page load if any are stored
+        document.addEventListener('DOMContentLoaded', showNames);
+    </script>
+</body>
+
+</html>

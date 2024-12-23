@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local@storage</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 10px 2px #ccc;
+            padding: 10px;
+
+        }
+
+        form label {
+            display: block;
+            font-size: 16px;
+
+        }
+
+        form input {
+            width: 100%;
+            height: 20px;
+            margin-bottom: 10px;
+
+
+        }
+
+        form button {
+            padding: 10px 25px;
+            background-color: aqua;
+            color: rgb(18, 18, 18);
+            cursor: pointer;
+        }
+
+        .main {
+            width: 1320px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+
+
+        }
+
+        .items {
+            flex-basis: 20%;
+            margin: 1%;
+            box-shadow: 0px 0px 10px 2px #ccc;
+            padding: 1%;
+            position: relative;
+
+        }
+
+        .items h5 {
+            margin-top: 10px;
+
+        }
+
+        .items span {
+            position: absolute;
+            font-size: 30px;
+            right: 0px;
+            top: 0px;
+            cursor: pointer;
+        }
+
+        button {
+            display: table;
+            margin: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <h2>Enquiry Now</h2>
+        <label for="name">Name</label>
+        <input type="text" name="uname" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        <label for="">Phone</label>
+        <input type="number" name="phone" required>
+        <button>Submit</button>
+    </form>
+    <div class="main">
+        <button id="cAll">Clear All</button>
+        <div class="items">
+            <span>&times;</span>
+            <h5>Name</h5>
+            <div>Abc</div>
+            <h5>Email</h5>
+            <div>abc@gmail.com</div>
+            <h5>Phone</h5>
+            <div>8888888899</div>
+
+
+        </div>
+    </div>
+</body>
+
+<script>
+    /* let user = [
+         {
+             'name': 'Souradip',
+             'email': 'souradip@37247gmail.com'
+         },
+         {
+             'name': 'soura',
+             'email': 'sou2787gmail.com'
+ 
+         }
+     ]*/
+    //localStorage.setItem("name", user) //two parameter included
+    // first one is the what is the name of this and second is the the value of this 
+
+    let form = document.querySelector("form");
+    let main = document.querySelector(".main");
+    let cAll = document.querySelector("#cAll");
+    // console.log(form)
+    form.addEventListener("submit", (event) => {
+        let name = event.target.uname.value;
+        let email = event.target.email.value;
+        let phone = event.target.phone.value;
+        let checkStatus = 0;
+
+
+        var userData = JSON.parse(localStorage.getItem("userDetails")) ?? [];//NULL handle operator
+        for (let v of userData) {
+            if (v.email == email || v.phone == phone) {
+                checkStatus = 1;
+                break;
+            }
+        }
+        if (checkStatus == 1) {
+            alert("Email or Phone Already Exists");
+        } else {
+            userData.push({
+                'name': name,
+                'email': email,
+                'phone': phone
+            })
+            localStorage.setItem("userDetails", JSON.stringify(userData))
+            event.target.reset();
+        }
+        /* userData.push({
+             'name': name,
+             'email': email,
+             'phone': phone
+         })
+         localStorage.setItem("userDetails", JSON.stringify(userData))
+         event.target.reset();  */
+        displayData();
+        // console.log(userData);
+        //console.log(name, email, phone);
+
+        event.preventDefault();//refresh ko rokta hya
+    })
+
+    let displayData = () => {
+        let userData = JSON.parse(localStorage.getItem("userDetails")) ?? [];
+        //console.log(userData);
+        let finalData = '';
+        userData.forEach((element, i) => {
+            finalData += `
+            <div class="items">
+                <span onclick='removeData(${i})'>&times;</span>
+                <h5>Name</h5>
+                <div>${element.name}</div>
+                <h5>Email</h5>
+                <div>${element.email}</div>
+                <h5>Phone</h5>
+                <div>${element.phone}</div>
+    
+    
+            </div>
+             `;
+
+        });
+        // console.log(finalData);
+        main.innerHTML = finalData;
+
+    }
+
+    let removeData = (index) => {
+        let userData = JSON.parse(localStorage.getItem("userDetails")) ?? [];
+        userData.splice(index, 1);
+        localStorage.setItem("userDetails", JSON.stringify(userData))
+        displayData();
+
+    }
+    cAll.addEventListener("click", () => {
+        localStorage.clear("userDetails");
+        displayData();
+    })
+    displayData();
+    //button.addEventListener("click", displayData);
+</script>
+
+</html>
